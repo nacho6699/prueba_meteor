@@ -1,0 +1,87 @@
+<head>
+  <title>proyecto2</title>
+</head>
+
+<body>
+
+<div class="container-fluid">
+<center>
+	{{> categoria}}
+
+	{{> chat}}
+</center>
+
+</div>
+</body>
+
+<template name='categoria'>
+<div class="row">
+
+	<h2 class="title">Whatsapp Mejillones</h2>
+		{{#each favoritos}}
+
+		<div class="btn btn-danger">
+			{{category}}
+		</div>
+
+		{{/each}}
+
+</div>
+</template>
+
+<template name='chat'>
+
+
+<div class="container-fluid">
+	{{> loginButtons}}
+
+
+{{#if currentUser}}
+
+<div class="row">
+
+<br>
+	<div id="contenido" class="panel panel-danger">
+		<div class="panel-heading">Nick  <input type="text" id="nick"  value="{{currentUser.username}}" disabled="true"></div>
+		<div class="panel-body">
+		{{#each mensajes}}
+
+			{{#if $eq currentUser._id miID }}
+				<div class="mensaje">
+					<div id="avatar" class="hijo"> <img src="1.jpg" alt=""></div>
+					<div id="cajita" class="hijo">
+						<div id="nombre">
+							{{nombre}} <i> {{date}}</i>
+						</div>
+						{{mensaje}}
+					</div>
+				</div>
+			{{else}}
+				<div class="mensajeyo">
+					<div id="avatar" class="hijoyo"><img src="2.jpg" alt=""></div>
+					<div id="cajitayo" class="hijoyo">
+						<div id="nombre">
+							<i>{{date}}</i> {{nombre}}
+						</div>
+						{{mensaje}}
+					</div>
+
+				</div>
+			{{/if}}
+
+		{{/each}}
+		</div>
+	</div>
+
+	<textarea id="txt_mensaje" style="{width: 400px}"></textarea>
+	<br>
+	<button id="btn_enviar" class="btn btn-danger">Enviar</button>
+</div>
+{{else}}
+
+<h3>Bien benido al Chat Mejillones B</h3>
+
+{{/if}}
+</div>
+
+</template>
